@@ -8,19 +8,25 @@ import {
 } from 'typeorm';
 import { ObjectId as ObjectID } from 'mongodb';
 
-@Entity('chapters')
-export class Chapter {
+@Entity('questions')
+export class Question {
   @ObjectIdColumn()
   id: ObjectId;
 
   @Column()
-  name: string;
+  title: string;
 
   @Column()
   subject_id: ObjectID;
 
   @Column()
   resource_id: ObjectID;
+
+  @Column()
+  chapter_id: ObjectID;
+
+  @Column()
+  description: string;
 
   @Column()
   completed: boolean;

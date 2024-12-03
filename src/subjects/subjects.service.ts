@@ -18,6 +18,7 @@ export class SubjectsService {
   public async addSubject(name: string): Promise<Subject> {
     const subjectToBeInserted = {
       name,
+      completed: false,
     };
     return await this.subjectRepository.save(subjectToBeInserted);
   }

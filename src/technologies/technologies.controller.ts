@@ -1,21 +1,22 @@
 import { Body, Controller, Get, Logger, Post } from '@nestjs/common';
-import { TechnologiesService } from './technologies.service';
+import { TechnologyService } from './technologies.service';
 import { CreateTechnologyDto } from './dto/create-technology-dto';
 
 @Controller('technologies')
-export class TechnologiesController {
-  private readonly logger = new Logger('TechnologiesController');
-  constructor(private readonly technologiesService: TechnologiesService) {}
+export class TechnologyController {
+  private readonly logger = new Logger('TechnologyController');
+  constructor(private readonly technologyService: TechnologyService) {}
+
   @Get('/')
-  public getSubjects() {
-    this.logger.log('GET_SUBJECTS');
-    return this.technologiesService.getTechnologies();
+  public async getTechnologies() {
+    this.logger.log('GET_TECHNOLOGIES');
+    return await this.technologyService.getTechnologies();
   }
 
   @Post('/')
-  public addSubject(@Body() body: CreateTechnologyDto) {
-    this.logger.log('ADD_SUBJECTS', JSON.stringify(body));
-    const { technology } = body;
-    return this.technologiesService.addTechnology(technology);
+  public async addTechnology(@Body() body: CreateTechnologyDto) {
+    this.logger.log('ADD_TECHNOLOGIES', JSON.stringify(body));
+    const { name, resource } = body;
+    return await this.technologyService.addTechnology(name, resource);
   }
 }

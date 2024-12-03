@@ -15,6 +15,9 @@ export class Subject {
   @Column()
   name: string;
 
+  @Column()
+  completed: boolean;
+
   @CreateDateColumn()
   created_at: Date;
 

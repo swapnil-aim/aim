@@ -25,6 +25,9 @@ export class Resource {
   @Column()
   course: string;
 
+  @Column()
+  completed: boolean;
+
   @CreateDateColumn()
   created_at: Date;
 

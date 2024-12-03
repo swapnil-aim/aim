@@ -10,8 +10,17 @@ export class ChaptersService {
     @InjectRepository(ChapterRepository)
     private readonly chapterRepository: ChapterRepository,
   ) {}
-  public async getChapters(): Promise<Chapter[]> {
-    return await this.chapterRepository.find({});
+  public async getChapters(
+    subjectId: string,
+    resourceId: string,
+  ): Promise<Chapter[]> {
+    console.log(subjectId, resourceId);
+    return await this.chapterRepository.find({
+      where: {
+        subject_id: new ObjectID(subjectId),
+        resource_id: new ObjectID(resourceId),
+      },
+    });
   }
 
   public async addChapter(
@@ -23,6 +32,7 @@ export class ChaptersService {
       name,
       subject_id: new ObjectID(subjectId),
       resource_id: new ObjectID(resourceId),
+      completed: false,
     };
     return await this.chapterRepository.save(chapterToBeInserted);
   }

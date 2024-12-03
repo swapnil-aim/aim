@@ -6,10 +6,9 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { ObjectId as ObjectID } from 'mongodb';
 
-@Entity('chapters')
-export class Chapter {
+@Entity('technologies')
+export class Technology {
   @ObjectIdColumn()
   id: ObjectId;
 
@@ -17,10 +16,7 @@ export class Chapter {
   name: string;
 
   @Column()
-  subject_id: ObjectID;
-
-  @Column()
-  resource_id: ObjectID;
+  resource: string;
 
   @Column()
   completed: boolean;

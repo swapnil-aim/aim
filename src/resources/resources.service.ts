@@ -10,8 +10,12 @@ export class ResourcesService {
     @InjectRepository(ResourceRepository)
     private readonly resourceRepository: ResourceRepository,
   ) {}
-  public async getResources(): Promise<Resource[]> {
-    return await this.resourceRepository.find({});
+  public async getResources(subjectId: string): Promise<Resource[]> {
+    return await this.resourceRepository.find({
+      where: {
+        subject_id: new ObjectID(subjectId),
+      },
+    });
   }
 
   public async addResource(
@@ -25,6 +29,7 @@ export class ResourcesService {
       subject_id: new ObjectID(subjectId),
       instructor,
       course,
+      completed: false,
     };
     return await this.resourceRepository.save(resourceToBeInserted);
   }

@@ -1,9 +1,13 @@
 import { Module } from '@nestjs/common';
-import { TechnologiesController } from './technologies.controller';
-import { TechnologiesService } from './technologies.service';
+import { TechnologyController } from './technologies.controller';
+import { TechnologyService } from './technologies.service';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { Technology } from './technologies.entity';
+import { TechnologyRepository } from './technologies.repository';
 
 @Module({
-  controllers: [TechnologiesController],
-  providers: [TechnologiesService]
+  imports: [TypeOrmModule.forFeature([Technology])],
+  controllers: [TechnologyController],
+  providers: [TechnologyService, TechnologyRepository],
 })
 export class TechnologiesModule {}

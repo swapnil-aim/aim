@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Logger, Post } from '@nestjs/common';
+import { Body, Controller, Get, Logger, Post, Query } from '@nestjs/common';
 import { ResourcesService } from './resources.service';
 import { CreateResourceDto } from './dto/create-resource-dto';
 
@@ -8,9 +8,10 @@ export class ResourcesController {
   constructor(private readonly resourcesService: ResourcesService) {}
 
   @Get('/')
-  public async getResources() {
+  public async getResources(@Query('subjectId') subjectId: string) {
     this.logger.log('GET_RESOURCES');
-    return await this.resourcesService.getResources();
+    console.log('subjectId ===>', subjectId);
+    return await this.resourcesService.getResources(subjectId);
   }
 
   @Post('/')

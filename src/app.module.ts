@@ -5,6 +5,7 @@ import { ResourcesModule } from './resources/resources.module';
 import { TechnologiesModule } from './technologies/technologies.module';
 import { Subject } from './subjects/subject.entity';
 import { ChaptersModule } from './chapters/chapters.module';
+import { QuestionsModule } from './questions/questions.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { ChaptersModule } from './chapters/chapters.module';
       useUnifiedTopology: true,
     }),
     ChaptersModule,
+    QuestionsModule,
   ],
   controllers: [],
   providers: [],

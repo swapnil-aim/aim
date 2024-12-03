@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Logger, Post } from '@nestjs/common';
+import { Body, Controller, Get, Logger, Post, Query } from '@nestjs/common';
 import { ChaptersService } from './chapters.service';
 import { CreateChapterDao } from './dto/create-chapter-dto';
 
@@ -8,9 +8,12 @@ export class ChaptersController {
   constructor(private readonly chapterService: ChaptersService) {}
 
   @Get('/')
-  public async getChapters() {
+  public async getChapters(
+    @Query('subjectId') subjectId: string,
+    @Query('resourceId') resourceId: string,
+  ) {
     this.logger.log('GET_CHAPTERS');
-    return await this.chapterService.getChapters();
+    return await this.chapterService.getChapters(subjectId, resourceId);
   }
 
   @Post('/')
